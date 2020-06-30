@@ -1,1 +1,5 @@
 <p>user-list works!</p>
+<h1>{{total|async}}</h1>
+<div >
+  <app-user-card [user]="user" *ngFor="let  user of users$ | async" ></app-user-card>
+</div>

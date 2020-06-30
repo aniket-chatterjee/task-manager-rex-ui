@@ -1,1 +1,21 @@
-<router-outlet></router-outlet>
+<p-toolbar>
+    <div class="ui-toolbar-group-left">
+        <i class="pi pi-bars"></i>
+    </div>
+
+    <div class="ui-toolbar-group-right"> 
+    You are pretending to be logged in as  
+     <p-dropdown [options]="users" (onChange)="onNewUserSelect($event)" [style]="{'width':'150px'}">
+        <ng-template let-item pTemplate="selectedItem">
+            <span class="highlighted-first-letter" [style.background-color]="item.color">{{item.label[0].toUpperCase()}}</span>
+            <span style="vertical-align:middle">{{item.label}}</span>
+        </ng-template>
+        <ng-template let-item pTemplate="item">
+            <div class="ui-helper-clearfix" style="position: relative;height:25px;">
+            <span class="highlighted-first-letter" [style.background-color]="item.color">{{item.label[0].toUpperCase()}}</span>
+            <div style="font-size:14px;float:right;margin-top:4px">{{item.label}}</div> </div>
+        </ng-template>
+    </p-dropdown>
+    </div>
+</p-toolbar>
+<router-outlet></router-outlet> 

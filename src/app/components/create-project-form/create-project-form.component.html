@@ -1,0 +1,21 @@
+<p-sidebar [(visible)]="showAddForm" position="right" [baseZIndex]="10000" [fullScreen]="false" styleClass="ui-sidebar-lg" (onHide)="onProjectFormHide($event)">
+    <h1 style="font-weight:normal">Create a Project</h1>
+    <div class="p-grid">
+      <form  [formGroup]="projectForm">
+      <div class="p-col-12">
+        <span class="ui-float-label">
+            <input id="float-input" type="text" size="30" pInputText formControlName="title" > 
+            <label for="float-input">Title</label>
+        </span>
+        </div>
+        <div class="p-col-12">
+          <p-editor  formControlName="description" [style]="{'height':'320px'}">
+          </p-editor>
+        </div>
+      </form>
+    </div>    
+
+    
+    <button pButton type="button" (click)="showAddForm = false" label="Save" class="ui-button-success"></button>
+    <button pButton type="button" (click)="showAddForm = false" label="Cancel" class="ui-button-secondary"></button>
+</p-sidebar>

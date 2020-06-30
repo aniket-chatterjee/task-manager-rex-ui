@@ -1,7 +1,7 @@
-import { Action, createReducer, on } from "@ngrx/store";
-import * as ProjectActions from "../actions/project.actions";
+import { Action, createReducer, on } from '@ngrx/store';
+import * as ProjectActions from '../actions/project.actions';
 
-export const projectFeatureKey = "project";
+export const projectFeatureKey = 'project';
 
 export interface State {}
 

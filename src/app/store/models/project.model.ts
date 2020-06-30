@@ -1,4 +1,4 @@
-import { User } from "./user.model";
+import { User } from './user.model';
 
 export interface ProjectResponse {
   count: number;
@@ -6,7 +6,10 @@ export interface ProjectResponse {
   previous?: string;
   results: Project[];
 }
-
+export class ProjectInput {
+  title: string;
+  description: string;
+}
 export interface Project {
   id: number;
   title: string;
