@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { User } from 'src/app/store/models/user.model';
+import { User } from 'src/app/store/user/user.model';
 import { Observable } from 'rxjs';
-import * as Actions from 'src/app/store/actions/user.actions';
+import * as Actions from 'src/app/store/user/user.actions';
 import { UserCardComponent } from 'src/app/components/user-card/user-card.component';
 
 @Component({

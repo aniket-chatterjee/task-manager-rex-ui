@@ -1,1 +1,12 @@
-<p>project-card works!</p>
+<p-card  styleClass="ui-card-shadow project" [subheader]="project.title">
+    <p-header>
+      <p-message text="Project"  severity="success"></p-message>
+    </p-header>
+    <div class="avatar-container" [ngStyle]="{backgroundImage:'url('+project.avatar+')'}"></div>
+    {{project.description}}
+    <p-footer>
+      <div class="p-grid p-justify-end">
+        <button pButton type="button" class="ui-button-secondary" label="open"></button>
+      </div>
+    </p-footer>
+</p-card>

@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
-import { User, UserDropdownModel } from './store/models/user.model';
+import { User, UserDropdownModel } from './store/user/user.model';
 import { Store } from '@ngrx/store';
 
-import * as Actions from 'src/app/store/actions/user.actions';
+import * as Actions from 'src/app/store/user/user.actions';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { isNullOrUndefined } from 'util';
 

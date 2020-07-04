@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ProjectInput } from 'src/app/store/models/project.model';
+import { ProjectInput } from 'src/app/store/project/project.model';
+import { Store } from '@ngrx/store';
+import * as Actions from 'src/app/store/project/project.actions';
 
 @Component({
   selector: 'app-create-project-form',
@@ -10,13 +12,24 @@ import { ProjectInput } from 'src/app/store/models/project.model';
 export class CreateProjectFormComponent implements OnInit {
   projectForm: FormGroup;
   inputModel: ProjectInput;
-  constructor() {}
+
+  constructor(private store: Store<{ projectState }>) {}
+
   @Input() showAddForm: boolean;
   @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
   description: string;
 
   onProjectFormHide() {
     this.change.emit(false);
+  }
+
+  createProject() {
+    this.inputModel = { ...this.projectForm.getRawValue() };
+    this.store.dispatch(Actions.createProject({ data: this.inputModel }));
+  }
+  handleAvatarUpload(event) {
+    const files = event.currentFiles;
+    this.projectForm.patchValue({ avatar: files[0] });
   }
   ngOnInit(): void {
     this.inputModel = new ProjectInput();
@@ -29,6 +42,7 @@ export class CreateProjectFormComponent implements OnInit {
         Validators.required,
         Validators.minLength(10),
       ]),
+      avatar: new FormControl(this.inputModel.avatar, []),
     });
   }
 }

@@ -1,4 +1,4 @@
-<p-sidebar [(visible)]="showAddForm" position="right" [baseZIndex]="10000" [fullScreen]="false" styleClass="ui-sidebar-lg" (onHide)="onProjectFormHide($event)">
+<p-sidebar [(visible)]="showAddForm" position="right" [baseZIndex]="10000" [fullScreen]="false" styleClass="ui-sidebar-lg" (onHide)="onProjectFormHide()">
     <h1 style="font-weight:normal">Create a Project</h1>
     <div class="p-grid">
       <form  [formGroup]="projectForm">
@@ -12,10 +12,13 @@
           <p-editor  formControlName="description" [style]="{'height':'320px'}">
           </p-editor>
         </div>
+        <div class="p-col-12">
+          <p-fileUpload customUpload="true" [showUploadButton]="false"  [showCancelButton]="false"  (onSelect)="handleAvatarUpload($event)"  accept="image/*" maxFileSize="1000000"></p-fileUpload>
+        </div>
       </form>
     </div>    
 
     
-    <button pButton type="button" (click)="showAddForm = false" label="Save" class="ui-button-success"></button>
+    <button pButton type="button" (click)="createProject()" label="Save" class="ui-button-success"></button>
     <button pButton type="button" (click)="showAddForm = false" label="Cancel" class="ui-button-secondary"></button>
 </p-sidebar>

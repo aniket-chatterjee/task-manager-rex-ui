@@ -7,13 +7,16 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './store/effects/user.effects';
-import { ProjectEffects } from './store/effects/project.effects';
-import { TaskEffects } from './store/effects/task.effects';
-import { reducer as UserReducer } from './store/reducers/user.reducer';
+import { UserEffects } from './store/user/user.effects';
+import { ProjectEffects } from './store/project/project.effects';
+import { TaskEffects } from './store/task/task.effects';
+import { reducer as UserReducer } from './store/user/user.reducer';
+import { reducer as ProjectReducer } from './store/project/project.reducer';
+import { reducer as TaskReducer } from './store/task/task.reducer';
 
 import { ToolbarModule } from 'primeng/toolbar';
 import { CardModule } from 'primeng/card';
+import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { MenuModule } from 'primeng/menu';
@@ -24,6 +27,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { EditorModule } from 'primeng/editor';
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 import { ProjectListComponent } from './pages/project-list/project-list.component';
 import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
@@ -39,6 +44,8 @@ import { environment } from '../environments/environment';
 import { CreateUserFormComponent } from './components/create-user-form/create-user-form.component';
 import { CreateProjectFormComponent } from './components/create-project-form/create-project-form.component';
 import { CreateTaskFormComponent } from './components/create-task-form/create-task-form.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -55,19 +62,24 @@ import { CreateTaskFormComponent } from './components/create-task-form/create-ta
     CreateUserFormComponent,
     CreateProjectFormComponent,
     CreateTaskFormComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ToolbarModule,
-    CardModule,
     ButtonModule,
+    MenubarModule,
+    CardModule,
     SplitButtonModule,
     SidebarModule,
     EditorModule,
     InputTextModule,
     FormsModule,
+    MessagesModule,
+    MessageModule,
     DropdownModule,
     MenuModule,
     TableModule,
@@ -75,7 +87,14 @@ import { CreateTaskFormComponent } from './components/create-task-form/create-ta
 
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({ usersState: UserReducer }, {}),
+    StoreModule.forRoot(
+      {
+        usersState: UserReducer,
+        projectState: ProjectReducer,
+        taskState: TaskReducer,
+      },
+      {}
+    ),
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([UserEffects, ProjectEffects, TaskEffects]),
     StoreDevtoolsModule.instrument({

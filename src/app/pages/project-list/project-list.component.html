@@ -1,11 +1,17 @@
-<p-toolbar>
-    <div class="ui-toolbar-group-left">
-       Projects
+<div class="p-grid">
+    <div class="p-col">
+        <button pButton type="button" icon="pi pi-plus" label="Add Project" (click)="showAddProjectForm()" ></button>
     </div>
-
-    <div class="ui-toolbar-group-right"> 
-      <button pButton type="button" label="Add Project" (click)="showAddProjectForm($event)" ></button>
+    <div class="p-col" style="text-align:right">
+        <input type="text" pInputText placeholder="Search">
+        <button pButton icon="pi pi-search" style="margin-left:.25em"></button>
     </div>
-</p-toolbar>
-
-<app-create-project-form [showAddForm] = "showAddForm" (change)="onFormHide($event)"></app-create-project-form>
+</div>
+<div class="p-grid">
+  <div class="p-col-12"></div> 
+  <div class="p-col-3 p-justify-center" *ngFor="let  project of projects$ | async">
+   <app-project-card  [project]="project"></app-project-card>
+  </div>
+  <div class="p-col-12"></div> 
+</div>
+<app-create-project-form [showAddForm] = "showAddForm" (change)="onFormHide($event)"  ></app-create-project-form>
