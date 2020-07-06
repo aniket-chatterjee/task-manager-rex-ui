@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
-import { User, UserResponse } from './user.model';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { User, UserResponse } from "./user.model";
+import { Observable } from "rxjs";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UserService {
-  private userUrl = 'http://localhost:8000/users/';
+  private userUrl = `${environment.baseUrl}/users/`;
   private users: User[];
 
   getUsers(): Observable<UserResponse> {

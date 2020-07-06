@@ -1,20 +1,82 @@
 <div class="p-grid">
-  <div class="p-col-8"></div>
-  <div class="p-col-4">
-    <div class="p-field">
-      <span class="ui-float-label">
-        <input id="float-input" type="text" size="30" pInputText />
-        <label for="float-input">Username</label>
-      </span>
-    </div>
-    <div class="p-field">
-      <span class="ui-float-label">
-        <input id="float-input" type="text" size="30" pInputText />
-        <label for="float-input">Password</label>
-      </span>
-    </div>
-    <div class="p-col-12 p-col-align-right">
-      <button type="button" pButton label="Login"></button>
-    </div>
-  </div>
+  <div class="p-md-8 p-sm-6"></div>
+  <form
+    class="p-md-4 p-sm-6"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="loginFormGroup"
+  >
+    <p-card header="Login">
+      <div class="p-col-12"></div>
+      <div class="p-col-12"></div>
+      <div class="ui-fluid">
+        <div class="p-field">
+          <span class="ui-float-label">
+            <input
+              tabindex="1"
+              type="text"
+              pInputText
+              formControlName="username"
+            />
+            <label for="float-input">Username</label>
+          </span>
+          <p-message
+            *ngIf="username.errors?.required && username.touched"
+            severity="error"
+            text="username is required"
+          ></p-message>
+          <p-message
+            *ngIf="username.errors?.minlength && username.touched"
+            severity="error"
+            text="Username should be at least 5 character long"
+          ></p-message>
+        </div>
+        <div class="p-col-12"></div>
+        <div class="p-field">
+          <span class="ui-float-label">
+            <input
+              tabindex="2"
+              type="password"
+              pInputText
+              formControlName="password"
+            />
+            <label for="float-input">Password</label>
+          </span>
+          <p-message
+            *ngIf="password.errors?.required && password.touched"
+            severity="error"
+            text="Password is required"
+          >
+          </p-message>
+          <p-message
+            *ngIf="password.errors?.minlength && password.touched"
+            severity="error"
+            text="Password should be at least 5 character long"
+          ></p-message>
+        </div>
+      </div>
+      <div class="p-col-12"></div>
+      <div class="p-field" style="text-align: right;">
+        <span style="float: left;">
+          don't have an account?
+          <a [routerLink]="['/register']">
+            <button
+              type="button"
+              class="ui-button-secondary"
+              pButton
+              tabindex="4"
+              label="Register"
+            ></button>
+          </a>
+        </span>
+        <button
+          type="button"
+          pButton
+          tabindex="3"
+          class="ui-button-raised"
+          label="Login"
+          [disabled]="loginFormGroup.invalid"
+        ></button>
+      </div>
+    </p-card>
+  </form>
 </div>

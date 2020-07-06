@@ -1,1 +1,146 @@
-<p>register works!</p>
+<div class="p-grid">
+  <div class="p-md-8 p-sm-6"></div>
+  <form
+    class="p-md-4 p-sm-6"
+    [formGroup]="registrationForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <p-card header="Signup">
+      <div class="p-col-12"></div>
+
+      <div class="ui-fluid">
+        <div class="p-col-12"></div>
+        <div class="p-field">
+          <span class="ui-float-label">
+            <input type="text" formControlName="firstName" pInputText />
+            <label for="float-input">First Name</label>
+          </span>
+          <p-message
+            *ngIf="firstName.errors?.required && firstName.touched"
+            severity="error"
+            text="Firstname is required"
+          >
+          </p-message>
+          <p-message
+            *ngIf="firstName.errors?.minlength && firstName.touched"
+            severity="error"
+            text="Firstname should be at least 3 character long"
+          ></p-message>
+        </div>
+        <div class="p-col-12"></div>
+        <div class="p-field">
+          <span class="ui-float-label">
+            <input type="text" pInputText formControlName="lastName" />
+            <label for="float-input">Last Name</label>
+          </span>
+          <p-message
+            *ngIf="lastName.errors?.required && lastName.touched"
+            severity="error"
+            text="Lastname is required"
+          >
+          </p-message>
+        </div>
+        <div class="p-col-12"></div>
+        <div class="p-field">
+          <span class="ui-float-label">
+            <input type="email" pInputText formControlName="email" />
+            <label for="float-input">Email</label>
+          </span>
+          <p-message
+            *ngIf="email.errors?.required && email.touched"
+            severity="error"
+            text="email is required"
+          >
+          </p-message>
+          <p-message
+            *ngIf="email.errors?.email && email.touched"
+            severity="error"
+            text="should be a valid email"
+          ></p-message>
+        </div>
+        <div class="p-col-12"></div>
+        <div class="p-field">
+          <span class="ui-float-label">
+            <input type="text" pInputText formControlName="username" />
+            <label for="float-input">Username</label>
+          </span>
+          <p-message
+            *ngIf="username.errors?.required && username.touched"
+            severity="error"
+            text="username is required"
+          >
+          </p-message>
+          <p-message
+            *ngIf="username.errors?.minlength && username.touched"
+            severity="error"
+            text="username should be at least 5 character long"
+          ></p-message>
+        </div>
+        <div class="p-col-12"></div>
+        <div class="p-field">
+          <span class="ui-float-label">
+            <input type="password" pInputText formControlName="password" />
+            <label for="float-input">Password</label>
+          </span>
+          <p-message
+            *ngIf="password.errors?.required && password.touched"
+            severity="error"
+            text="password is required"
+          >
+          </p-message>
+          <p-message
+            *ngIf="password.errors?.minlength && password.touched"
+            severity="error"
+            text="password should be at least 5 character long"
+          ></p-message>
+        </div>
+        <div class="p-col-12"></div>
+        <div class="p-field">
+          <span class="ui-float-label">
+            <input
+              type="password"
+              pInputText
+              formControlName="confirmPassword"
+            />
+            <label for="float-input">Re-Enter Password</label>
+          </span>
+          <p-message
+            *ngIf="confirmPassword.errors?.required && confirmPassword.touched"
+            severity="error"
+            text="confirmPassword is required"
+          >
+          </p-message>
+          <p-message
+            *ngIf="registrationForm.errors?.passwordError && confirmPassword.touched"
+            severity="error"
+            text="confirmPassword should match password"
+          ></p-message>
+        </div>
+      </div>
+      <div class="p-field" style="text-align: right;">
+        <span style="float: left;">
+          already have an account?
+          <a [routerLink]="['/login']">
+            <button
+              type="button"
+              class="ui-button-secondary"
+              pButton
+              tabindex="4"
+              label="Login"
+            ></button>
+          </a>
+        </span>
+
+        <button
+          type="button"
+          class="ui-button-raised"
+          pButton
+          label="Register"
+          (click)="onSubmit()"
+          [disabled]="registrationForm.invalid"
+        ></button>
+      </div>
+    </p-card>
+  </form>
+</div>
+<p-toast></p-toast>
